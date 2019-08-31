@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Hear This At</string>
+
+    <!-- GENERAL MESSAGES-->
+    <string name="select_video">Select a video…</string>
+    <string name="select_audio">Select an audio…</string>
+    <string name="select_images">Select some images…</string>
+    <string name="select_image">Select an image…</string>
+    <!-- END -->
+
+    <!-- ERROR MESSAGES-->
+    <string name="error_permission_camera">Camera permissions not granted.</string>
+    <string name="error_no_connection">No connection with the internet.</string>
+    <!-- END -->
+
+    <!-- BUTTONS-->
+    <string name="ok_button">OK</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="select_button">Select</string>
+    <string name="yes_button">Yes</string>
+    <string name="no_button">No</string>
+    <!-- END -->
+
+
+    <!-- ARTISTS FRAGMENT -->
+    <string name="artists_title">Popular Artists</string>
+    <!-- END -->
+
+    <!-- ARTISTS DETAILS FRAGMENT -->
+    <string name="followers_number_text">%1$s followers</string>
+    <string name="tracks_number_text">%1$s tracks</string>
+    <string name="description_text">Description</string>
+    <string name="tracks_text">Tracks</string>
+    <!-- END -->
+
+    <!-- PLAYING NOW FRAME -->
+    <string name="playing_now_title">Playing now</string>
+    <!-- END -->
+
+</resources>
