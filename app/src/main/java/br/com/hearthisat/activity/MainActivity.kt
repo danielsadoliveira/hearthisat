@@ -19,7 +19,7 @@ class MainActivity: BaseActivity(), NetworkStateReceiver.NetworkStateReceiverLis
     private lateinit var playObserver: Disposable
     private lateinit var playlistObserver: Disposable
 
-    //region ## LIFE CYCLE METHODS ##
+    //region - LIFE CYCLE METHODS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,15 +46,14 @@ class MainActivity: BaseActivity(), NetworkStateReceiver.NetworkStateReceiverLis
 
     //endregion
 
-    //region ## SETUP METHODS ##
+    //region - SETUP METHODS
     private fun setup() {
         playing_now_frame.setup()
         changeFragment(fragment = ContentOption.ARTISTS.fragment)
     }
-
     //endregion
 
-    //region ## HELPER METHODS ##
+    //region - HELPER METHODS
     fun changeFragment(fragment: Fragment, animation: FragmentAnimationType? = null) {
         commitFragment(
             layout = R.id.content_fragment,
@@ -62,11 +61,9 @@ class MainActivity: BaseActivity(), NetworkStateReceiver.NetworkStateReceiverLis
             animationType = animation,
             commitType = FragmentCommitType.commitAllowingStateLoss)
     }
-
-
     //endregion
 
-    //region ## Observables ##
+    //region - OBSERVABLES
     private fun startObservables() {
         contentObserver = NotificationEvent.listen(identifier = "content", contentType = String::class.java).subscribe { pair ->
             ContentOption::class.decompile(json = (pair.second as String?))?.let { content ->
@@ -105,13 +102,13 @@ class MainActivity: BaseActivity(), NetworkStateReceiver.NetworkStateReceiverLis
     //endregion
 
 
-    //region ## NetworkStateReceiverListener ##
+    //region - NetworkStateReceiverListener
     override fun networkAvailable() {
-        //TODO: Ação quando conexão com internet voltar
+        //TODO: Some action when the network get available again
     }
 
     override fun networkUnavailable() {
-        //TODO: Ação quando conexão com internet for perdida
+        //TODO: Some action when the network isn't available anymore
     }
     //endregion
 }
