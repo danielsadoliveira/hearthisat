@@ -32,12 +32,14 @@ class ArtistAdapter(private val action: (Artist) -> Unit) : RecyclerView.Adapter
 
     //region - HELPER METHODS
     fun add(list: List<Artist>, clear: Boolean) {
+        val currentSize = artists.size
+
         artists.apply {
             if (clear) { clear() }
             addAll(list)
         }
 
-        notifyDataSetChanged()
+        notifyItemRangeInserted(currentSize, list.size)
     }
     //endregion
 }

@@ -44,6 +44,8 @@ class MainActivity: BaseActivity(), NetworkStateReceiver.NetworkStateReceiverLis
         stopObservables()
     }
 
+    override fun onBackPressed() {}
+
     //endregion
 
     //region - SETUP METHODS

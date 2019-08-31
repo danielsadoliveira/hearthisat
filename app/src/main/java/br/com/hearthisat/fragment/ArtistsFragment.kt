@@ -76,16 +76,20 @@ class ArtistsFragment : BaseFragment() {
         GeneralService.getFeed(
             page = page,
             onSuccess = { tracks ->
-                if (page <= 1) loading_progress.visibility = View.GONE
-                else loading_more_progress.visibility = View.GONE
+                if(initialized) {
+                    if (page <= 1) loading_progress.visibility = View.GONE
+                    else loading_more_progress.visibility = View.GONE
 
-                adapter.add(list = retriveArtists(tracks = tracks), clear = page == 1)
+                    adapter.add(list = retriveArtists(tracks = tracks), clear = page == 1)
+                }
             },
             onError = { message ->
-                if (page <= 1) loading_progress.visibility = View.GONE
-                else loading_more_progress.visibility = View.GONE
+                if(initialized) {
+                    if (page <= 1) loading_progress.visibility = View.GONE
+                    else loading_more_progress.visibility = View.GONE
 
-                ErrorDialog(context = activity!!, title = "Someting went wrong!", message = message).show()
+                    ErrorDialog(context = activity!!, title = "Someting went wrong!", message = message).show()
+                }
             }
         )
     }
@@ -96,12 +100,16 @@ class ArtistsFragment : BaseFragment() {
         GeneralService.getArtist(
             permalink = artist.permalink!!,
             onSuccess = { details ->
-                stopLoading()
-                NotificationEvent.post(identifier = "content", content = ContentOption.ARTIST_DETAILS.compile(mapOf("artist" to details.toJson())))
+                if(initialized) {
+                    stopLoading()
+                    NotificationEvent.post(identifier = "content", content = ContentOption.ARTIST_DETAILS.compile(mapOf("artist" to details.toJson())))
+                }
             },
             onError = { message ->
-                stopLoading()
-                ErrorDialog(context = activity!!, title = "Someting went wrong!", message = message).show()
+                if(initialized) {
+                    stopLoading()
+                    ErrorDialog(context = activity!!, title = "Someting went wrong!", message = message).show()
+                }
             }
         )
     }

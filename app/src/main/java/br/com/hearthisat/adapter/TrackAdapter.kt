@@ -34,12 +34,14 @@ class TrackAdapter(private val action: (Track) -> Unit) : RecyclerView.Adapter<R
 
     //region - HELPER METHODS
     fun add(list: List<Track>, clear: Boolean) {
+        val currentSize = tracks.size
+
         tracks.apply {
             if (clear) { clear() }
             addAll(list)
         }
 
-        notifyDataSetChanged()
+        notifyItemRangeInserted(currentSize, list.size)
     }
     //endregion
 }

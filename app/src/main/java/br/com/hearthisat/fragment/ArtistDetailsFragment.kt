@@ -76,13 +76,6 @@ class ArtistDetailsFragment : BaseFragment() {
         artist_name_text.text = artist.username
         followers_text.text = formattedStrings!![R.string.followers_number_text](artist.followers_count.toString())
         tracks_text.text = formattedStrings!![R.string.tracks_number_text](artist.track_count.toString())
-
-        if (!artist.description.isNullOrEmpty()){
-            description_layout.visibility = View.VISIBLE
-            description_text.text = artist.description
-        } else {
-            description_layout.visibility = View.GONE
-        }
     }
 
     private fun setupRecycler() {
@@ -113,16 +106,20 @@ class ArtistDetailsFragment : BaseFragment() {
             permalink = artist.permalink!!,
             page = page,
             onSuccess = { tracks ->
-                if (page <= 1) loading_progress.visibility = View.GONE
-                else loading_more_progress.visibility = View.GONE
+                if(initialized) {
+                    if (page <= 1) loading_progress.visibility = View.GONE
+                    else loading_more_progress.visibility = View.GONE
 
-                adapter.add(list = tracks, clear = page == 1)
+                    adapter.add(list = tracks, clear = page == 1)
+                }
             },
             onError = { message ->
-                if (page <= 1) loading_progress.visibility = View.GONE
-                else loading_more_progress.visibility = View.GONE
+                if(initialized) {
+                    if (page <= 1) loading_progress.visibility = View.GONE
+                    else loading_more_progress.visibility = View.GONE
 
-                ErrorDialog(context = activity!!, title = "Someting went wrong!", message = message).show()
+                    ErrorDialog(context = activity!!, title = "Someting went wrong!", message = message).show()
+                }
             }
         )
     }

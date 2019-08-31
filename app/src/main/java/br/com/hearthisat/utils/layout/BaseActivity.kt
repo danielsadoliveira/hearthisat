@@ -19,6 +19,7 @@ import pl.aprilapps.easyphotopicker.EasyImage
 
 abstract class BaseActivity : AssentActivity(), AnkoLogger {
     var loadingDialog : LoadingDialog? = null
+    var initialized: Boolean = false
 
     companion object {
         const val ACTIVITY_RESULT_REQUEST_CODE = 98
@@ -30,12 +31,22 @@ abstract class BaseActivity : AssentActivity(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initialized = true
+    }
+
+    override fun onStart() {
+        super.onStart()
         overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
     }
 
     override fun onPause() {
         super.onPause()
         overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        initialized = false
     }
 
     fun getContent(type: ContentType){

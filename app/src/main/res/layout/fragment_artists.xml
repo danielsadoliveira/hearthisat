@@ -36,14 +36,14 @@
             android:layout_marginBottom="64dp"
             android:layout_gravity="center"
             android:visibility="gone"/>
-    </FrameLayout>
 
-    <ProgressBar
-        android:id="@+id/loading_more_progress"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:layout_gravity="center"
-        android:visibility="gone"/>
+        <ProgressBar
+            android:id="@+id/loading_more_progress"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center|bottom"
+            android:visibility="gone"/>
+    </FrameLayout>
 </LinearLayout>
